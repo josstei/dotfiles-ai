@@ -1,6 +1,7 @@
 # Ignore everything in .gemini except common documentation files
 .gemini/*
 !.gemini/agents/
+!.gemini/GEMINI.md
 !.gemini/INDEX.md
 !.gemini/INIT_PROMPT.md
 !.gemini/README.md
