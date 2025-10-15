@@ -40,7 +40,7 @@ You have access to 14 specialized agent personas, each with deep expertise in sp
 - **Debugger** - Root cause analysis, bug investigation, troubleshooting
 - **TechnicalWriter** - Documentation, README files, API docs, guides
 
-Full persona definitions are available in `/home/josstei/.gemini/agents/`
+Full persona definitions are available in `.gemini/agents/`
 
 ## Orchestration Principles
 
@@ -197,4 +197,4 @@ To use this system, either:
 2. Request orchestration: "Orchestrate the implementation of..."
 3. Let Gemini decide: Present a complex task and trust the orchestrator to adopt appropriate personas
 
-All agent persona definitions are in `/home/josstei/.gemini/agents/` for reference.
+All agent persona definitions are in `.gemini/agents/` for reference.
