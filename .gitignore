@@ -1,0 +1,14 @@
+# Ignore everything in .gemini except common documentation files
+.gemini/*
+!.gemini/agents/
+!.gemini/INDEX.md
+!.gemini/INIT_PROMPT.md
+!.gemini/README.md
+!.gemini/QUICK_START.md
+!.gemini/ORCHESTRATOR_PROMPT.md
+!.gemini/TASK_ROUTING_GUIDE.md
+!.gemini/WORKFLOW_EXAMPLES.md
+
+# Ignore everything in .claude except agent definition files
+.claude/*
+!.claude/*.md
