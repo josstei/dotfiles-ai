@@ -50,6 +50,20 @@ You can call a specific agent directly using `@agent-` syntax:
 @agent-Architect design a microservices architecture for this feature
 ```
 
+### Slash Commands
+
+The `/orch` command launches a comprehensive engineering team review with TechLead orchestrating multiple specialized agents in parallel:
+
+```
+/orch review the authentication system for security issues and performance bottlenecks
+
+/orch analyze the API layer for design improvements
+
+/orch comprehensive review of the data processing pipeline
+```
+
+This command delegates to all relevant agents (Architect, CodeReviewer, SecurityEngineer, PerformanceEngineer, Tester, etc.) simultaneously and synthesizes their findings into a coordinated action plan.
+
 ## Installation
 
 Copy this directory to your project:

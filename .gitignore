@@ -13,4 +13,6 @@
 # Ignore everything in .claude except agent definition files
 .claude/*
 !.claude/agents/
+!.claude/commands/
 !.claude/README.md
+!.claude/CLAUDE.md
