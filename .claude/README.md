@@ -1,86 +1,106 @@
-# Claude Code Agent System
+# Claude Code Agent Orchestration
 
-Specialized agent personas for Claude Code to handle different software engineering tasks.
+A complete engineering operations kit for [Claude Code](https://docs.anthropic.com/en/docs/claude-code) — specialized agents, custom slash commands, and strict architectural standards that transform Claude into a disciplined, multi-agent development team.
 
-## Overview
-
-This directory contains 13 specialized agent configurations that Claude Code can invoke:
-
-### Strategic & Planning
-- **TechLead** - Large refactorings, technical planning, multi-agent coordination
-- **Architect** - System design, architecture patterns, tech stack decisions
-- **APIDesigner** - REST/GraphQL API design, endpoint contracts
-
-### Implementation
-- **Coder** - Feature implementation, algorithms, clean code
-- **DataEngineer** - Database schema, ETL pipelines, query optimization
-- **DevOpsEngineer** - CI/CD, containerization, infrastructure automation
-
-### Quality & Optimization
-- **CodeReviewer** - PR reviews, code quality, best practices
-- **Refactor** - Code modernization, technical debt reduction
-- **Tester** - Test creation, TDD/BDD, coverage analysis
-- **SecurityEngineer** - Security audits, vulnerability assessment
-- **PerformanceEngineer** - Optimization, profiling, bottleneck removal
-
-### Support & Documentation
-- **Debugger** - Bug investigation, root cause analysis
-- **TechnicalWriter** - API docs, READMEs, user guides
-
-## How It Works
-
-### Automatic Agent Selection
-Claude Code automatically loads and uses these agents based on your requests:
-
-- Ask to implement a feature → **Coder** agent is used
-- Ask to review code → **CodeReviewer** agent is used
-- Ask to fix a bug → **Debugger** then **Coder** agents are used
-- Complex tasks → **TechLead** orchestrates multiple agents
-
-### Direct Agent Invocation
-You can call a specific agent directly using `@agent-` syntax:
+## Repository Structure
 
 ```
-@agent-TechLead plan the refactoring of the authentication system
-
-@agent-SecurityEngineer audit this code for vulnerabilities
-
-@agent-PerformanceEngineer analyze the bottlenecks in this function
-
-@agent-Architect design a microservices architecture for this feature
+.claude/
+├── CLAUDE.md              # Project instructions, coding standards, execution methodology
+├── agents/                # 13 specialized engineering agent personas
+│   ├── APIDesigner.md
+│   ├── Architect.md
+│   ├── CodeReviewer.md
+│   ├── Coder.md
+│   ├── DataEngineer.md
+│   ├── Debugger.md
+│   ├── DevOpsEngineer.md
+│   ├── PerformanceEngineer.md
+│   ├── Refactor.md
+│   ├── SecurityEngineer.md
+│   ├── TechLead.md
+│   ├── TechnicalWriter.md
+│   └── Tester.md
+└── commands/              # Custom slash commands with dual-validation workflows
+    ├── arch-analysis.md
+    ├── cleanup.md
+    ├── code-review.md
+    └── codex-review.md
 ```
 
-### Slash Commands
+## Agents
 
-The `/orch` command launches a comprehensive engineering team review with TechLead orchestrating multiple specialized agents in parallel:
+Thirteen specialized agent personas organized by engineering discipline:
 
-```
-/orch review the authentication system for security issues and performance bottlenecks
+| Category | Agent | Purpose |
+|----------|-------|---------|
+| **Planning** | TechLead | Project orchestration, task delegation, multi-agent coordination |
+| | Architect | System design, microservices, DDD, tech stack decisions |
+| | APIDesigner | REST/GraphQL API design, OpenAPI specs, versioning strategies |
+| **Implementation** | Coder | Feature implementation, clean tested code, idiomatic patterns |
+| | DataEngineer | Schema design, query optimization, ETL pipelines |
+| | DevOpsEngineer | CI/CD pipelines, containerization, Kubernetes, IaC |
+| **Quality** | CodeReviewer | PR reviews, code quality, security checks, best practices |
+| | Refactor | Code modernization, design patterns, SOLID principles, debt reduction |
+| | Tester | Unit/integration testing, coverage analysis, TDD/BDD |
+| | SecurityEngineer | Security audits, OWASP compliance, vulnerability assessment |
+| | PerformanceEngineer | Profiling, bottleneck removal, scaling improvements |
+| **Support** | Debugger | Root cause analysis, systematic debugging, stack trace analysis |
+| | TechnicalWriter | API documentation, architecture diagrams, technical guides |
 
-/orch analyze the API layer for design improvements
+Claude Code automatically selects the appropriate agent based on the task context. The **TechLead** agent serves as the orchestrator, breaking complex work into subtasks and delegating to specialist agents.
 
-/orch comprehensive review of the data processing pipeline
-```
+## Custom Slash Commands
 
-This command delegates to all relevant agents (Architect, CodeReviewer, SecurityEngineer, PerformanceEngineer, Tester, etc.) simultaneously and synthesizes their findings into a coordinated action plan.
+### `/code-review`
+
+Deep code review with a 7-phase protocol emphasizing **accuracy over volume**. Establishes ground truth via the test suite, traces execution paths, validates every finding, and runs dual parallel validation (Codex CLI + CodeReviewer) before reporting. Only verified issues make the final report.
+
+### `/arch-analysis`
+
+Architecture conformance analysis across 5 phases. Identifies directory structure violations, naming inconsistencies, pattern compliance failures, circular dependencies, and misplaced code. Dual-validated to minimize false positives.
+
+### `/cleanup`
+
+Dead code analysis and safe removal planning across 6 phases. Discovers unused exports, orphaned files, dead dependencies, and legacy patterns. Includes confidence-scored findings and regression test planning before any removal.
+
+### `/codex-review`
+
+Lightweight validation workflow using Codex CLI for quick finding verification.
+
+## CLAUDE.md Standards
+
+The `CLAUDE.md` file enforces project-wide engineering standards:
+
+- **Future-First Design** — interfaces, abstractions, and loose coupling by default
+- **Strict Contracts** — rigid typing, explicit interfaces, no shortcuts
+- **Clean Separation** — single responsibility at every level (file, method, module)
+- **Execution Planning Methodology** — a 7-step framework for complex multi-phase tasks covering dependency analysis, risk classification, parallelization, agent selection, and validation checkpoints
 
 ## Installation
 
-Copy this directory to your project:
+Copy the `.claude/` directory into any project:
+
 ```bash
-cp -r .claude ~/your-project/
+cp -r .claude/ ~/your-project/.claude/
 ```
 
-Claude Code will automatically detect and use these agent configurations.
+Claude Code automatically detects and applies the configuration when working inside the project directory.
 
-## Agent Files
+## Key Design Patterns
 
-Each agent is defined in `agents/*.md` with:
-- Agent name and description
-- Use cases
-- Specialized capabilities
-- Orchestration approach (for TechLead)
+### Dual Validation
 
-## Customization
+Critical commands run two independent validators in parallel — Codex CLI and the CodeReviewer agent — then cross-reference results. Only findings confirmed by both validators are reported, dramatically reducing false positives.
 
-Feel free to edit the agent files in `agents/` to customize their behavior, expertise, or communication style for your project needs.
+### Multi-Phase Analysis
+
+Complex workflows decompose into discrete phases: **discovery** → **analysis** → **validation** → **reporting** → **cleanup**. Each phase has explicit entry/exit criteria and produces auditable intermediate artifacts.
+
+### Agent Specialization
+
+Each agent definition includes specific use cases, domain expertise, methodologies, and behavioral constraints. This prevents role confusion and ensures consistent, high-quality output regardless of task complexity.
+
+## License
+
+MIT — See [LICENSE](../LICENSE)
